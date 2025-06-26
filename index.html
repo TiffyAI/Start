@@ -77,9 +77,9 @@
   </style>
 </head>
 <body>
-  <h1>🔓 Open Chrome for TiffyAI</h1>
+  <h1>🔓 Open in Chrome</h1>
 
-  <button class="wallet-btn" onclick="openChrome()">🚀 Open Chrome</button>
+  <button class="wallet-btn" onclick="openInChrome()">🚀 Open Chrome</button>
 
   <div class="copy-section">
     <div class="copy-text" id="copyLink">https://tiffyai.github.io/Notification/</div>
@@ -87,19 +87,19 @@
   </div>
 
   <footer>
-    Open Chrome and paste the link in your wallet’s browser if needed.
+    If Chrome doesn't open, paste the link manually in your wallet browser.
   </footer>
 
   <script>
-    function openChrome() {
-      const url = "https://tiffyai.github.io/Notification/";
-      window.open(url, '_blank');
+    function openInChrome() {
+      const chromeIntent = 'intent://tiffyai.github.io/Notification/#Intent;scheme=https;package=com.android.chrome;end';
+      window.location.href = chromeIntent;
     }
 
     function copyLink() {
       const text = document.getElementById("copyLink").innerText;
       navigator.clipboard.writeText(text).then(() => {
-        alert("✅ Link copied. Paste it inside your wallet browser.");
+        alert("✅ Link copied! Now paste it inside your wallet browser.");
       });
     }
   </script>
