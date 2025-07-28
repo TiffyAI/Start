@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open Chrome to Claim TiffyAI Tokens</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('set.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 20, 0.6);
+      z-index: 0;
+    }
+
+    h1 {
+      color: #00ffc3;
+      text-shadow: 0 0 10px #00ffc3;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .wallet-btn {
+      background: linear-gradient(135deg, #0ff 0%, #f0f 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      padding: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      box-shadow:
+        0 0 10px #0ff,
+        0 0 30px #f0f,
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      animation: pulse 2s infinite ease-in-out;
+      overflow: hidden;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 10px #0ff, 0 0 30px #f0f;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        box-shadow: 0 0 20px #0ff, 0 0 60px #f0f;
+      }
+    }
+
+    .wallet-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, #ffffff22 10%, transparent 60%);
+      animation: sweep 3s infinite linear;
+      z-index: -1;
+    }
+
+    @keyframes sweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .copy-section {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #00ffc3;
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 13px;
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 320px;
+      z-index: 2;
+    }
+
+    .copy-text {
+      color: #00ffc3;
+      word-break: break-word;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .copy-btn {
+      background: #00ffc3;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #ccc;
+      z-index: 2;
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+    }
+
+    /* 🌌 Neon Portal Stargate */
+    .portal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #111 40%, transparent 70%);
+      box-shadow: 0 0 40px #0ff, 0 0 80px #f0f, 0 0 140px #0ff;
+      z-index: 1;
+      animation: pulsePortal 3s infinite ease-in-out;
+    }
+
+    .portal::before,
+    .portal::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      border-radius: 50%;
+      border: 4px dotted #0ff;
+      animation: spin 10s linear infinite;
+      opacity: 0.4;
+    }
+
+    .portal::after {
+      border: 4px dashed #f0f;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulsePortal {
+      0%, 100% { box-shadow: 0 0 40px #0ff, 0 0 80px #f0f; }
+      50% { box-shadow: 0 0 70px #f0f, 0 0 140px #0ff; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔊 Sound effect -->
+  <audio id="portalSound" src="https://tiffyai.github.io/Stamp/spring.wav" preload="auto"></audio>
+
+  <div class="portal"></div>
+
+  <h1>🔓</h1>
+
+  <button class="wallet-btn" onclick="playSoundAndOpen()">🚀</button>
+
+  <div class="copy-section">
+    <div class="copy-text" id="copyLink">https://tiffyai.github.io/Blue-Key-Claim/</div>
+    <button class="copy-btn" onclick="copyLink()">📋 Copy Unlock Link</button>
+  </div>
+
+  <footer>
+    To Claim Scares TIFFY Tokens Copy the Link and Paste the link manually in your Web3 Wallet Browser like MetaMask. OKX or TrustWallet
+  </footer>
+
+  <script>
+    function playSoundAndOpen() {
+      const sound = document.getElementById("portalSound");
+      sound.play().catch(() => {});
+      setTimeout(() => {
+        const chromeIntent = 'intent://tiffyai.github.io/Alert/#Intent;scheme=https;package=com.android.chrome;end';
+        window.location.href = chromeIntent;
+      }, 2000); // ⏱️ 2 second delay to let the sound finish
+    }
+
+    function copyLink() {
+      const text = document.getElementById("copyLink").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Link copied! Now paste it inside your wallet browser.");
+      });
+    }
+  </script>
+</body>
+</html>
