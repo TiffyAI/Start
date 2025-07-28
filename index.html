@@ -90,6 +90,8 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
+      position: absolute;
+      top: 0; left: 0;
     }
 
     .ripple {
@@ -110,33 +112,41 @@
 </head>
 <body>
 
+  <!-- Portal Background -->
+  <div class="portal"></div>
+
   <!-- Sound -->
   <audio id="portalSound" src="https://tiffyai.github.io/Stamp/spring.wav" preload="auto"></audio>
 
-  <div class="portal"></div>
-
+  <!-- Button Container -->
   <div class="portal-button" onclick="playSoundRippleAndOpen(event)">
-    <img id="buttonImg" src="https://tiffyai.github.io/Start/stuck.gif" alt="Tiffy Portal" />
+    <!-- Preloaded Start.gif (initially hidden behind stuck image) -->
+    <img id="startGif" src="https://tiffyai.github.io/Start/Start.gif" style="z-index: 1;" />
+    <!-- stuck.gif shows for 7 sec, then stuck.jpg on top -->
+    <img id="stuckOverlay" src="https://tiffyai.github.io/Start/stuck.gif" style="z-index: 2;" />
   </div>
 
   <script>
-    const btnImg = document.getElementById("buttonImg");
+    const stuckOverlay = document.getElementById("stuckOverlay");
 
-    // Switch to stuck.jpg after 7 seconds
+    // After 7 seconds, change stuckOverlay to the still image
     setTimeout(() => {
-      btnImg.src = "https://tiffyai.github.io/Start/stuck.jpg";
+      stuckOverlay.src = "https://tiffyai.github.io/Start/stuck.jpg";
     }, 7000);
 
     function playSoundRippleAndOpen(evt) {
       const sound = document.getElementById("portalSound");
 
-      // Switch image to Start.gif on click
-      btnImg.src = "https://tiffyai.github.io/Start/Start.gif";
+      // Remove stuck overlay to reveal the animated Start.gif
+      stuckOverlay.remove();
 
+      // Play sound
       sound.play().catch(() => {});
+
+      // Ripple magic
       createRipple(evt);
 
-      // Wait 2 seconds to let sound + gif finish
+      // Delay before redirect
       setTimeout(() => {
         const chromeIntent = 'intent://tiffyai.github.io/Alert/#Intent;scheme=https;package=com.android.chrome;end';
         window.location.href = chromeIntent;
@@ -147,13 +157,12 @@
       const btn = e.currentTarget;
       const rect = btn.getBoundingClientRect();
       const size = rect.width * 1.8;
-      const x = e.clientX - rect.left - size/2;
-      const y = e.clientY - rect.top - size/2;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
       const ripple = document.createElement('div');
       ripple.className = 'ripple';
       ripple.style.width = ripple.style.height = size + 'px';
       ripple.style.left = x + 'px'; ripple.style.top = y + 'px';
-      ripple.style.borderColor = '#fff';
       btn.appendChild(ripple);
       ripple.addEventListener('animationend', () => ripple.remove());
     }
