@@ -6,19 +6,20 @@
   <title>👁️ TiffyAI Stamp Activated</title>
   <meta name="description" content="You've been detected by TiffyAI. Claim your Blue Key and unlock a treasure of crypto rewards. Tap to activate.">
 
-  <!-- 🌐 Social Meta Tags (Telegram-safe version) -->
+  <!-- 🌐 Open Graph Meta Tags (Telegram Compatible) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="🔵 Claim Your Blue Key | Unlock TiffyAI Treasury" />
-  <meta property="og:description" content="TiffyAI detected your curiosity. Take your free Blue Key and unlock exclusive rewards on the blockchain." />
+  <meta property="og:title" content="🔵 Claim Your Blue Key | TiffyAI Stamp" />
+  <meta property="og:description" content="You've caught the attention of TiffyAI. Here's your reward. Come explore." />
   <meta property="og:image" content="https://tiffyai.github.io/Start/Enter.jpg" />
   <meta property="og:url" content="https://tiffyai.github.io/Start/" />
 
   <!-- 🐦 Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="🔵 Claim Your Blue Key | Unlock Exclusive TiffyAI Rewards" />
+  <meta name="twitter:title" content="🔵 Claim Your Blue Key | TiffyAI Stamp" />
   <meta name="twitter:description" content="You've caught the attention of TiffyAI. Here's your reward. Come explore." />
   <meta name="twitter:image" content="https://tiffyai.github.io/Start/Enter.jpg" />
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 
   <style>
@@ -40,7 +41,8 @@
 
     body::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0, 0, 20, 0.6);
       z-index: 0;
     }
@@ -79,7 +81,7 @@
     }
 
     @keyframes pulsePortal {
-      0%,100% { box-shadow: 0 0 40px #0ff, 0 0 80px #f0f; }
+      0%, 100% { box-shadow: 0 0 40px #0ff, 0 0 80px #f0f; }
       50% { box-shadow: 0 0 100px #f0f, 0 0 180px #0ff; }
     }
 
@@ -98,7 +100,7 @@
     }
 
     @keyframes pulseBtn {
-      0%,100% { transform: translate(-50%, -50%) scale(1); }
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
       50% { transform: translate(-50%, -50%) scale(1.1); }
     }
 
@@ -165,7 +167,8 @@
       const ripple = document.createElement('div');
       ripple.className = 'ripple';
       ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = x + 'px'; ripple.style.top = y + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
       btn.appendChild(ripple);
       ripple.addEventListener('animationend', () => ripple.remove());
     }
