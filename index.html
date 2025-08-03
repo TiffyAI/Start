@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>👁️ TiffyAI Stamp Activated</title>
+  <meta name="description" content="You've been detected by TiffyAI. Claim your Blue Key and unlock a treasure of crypto rewards. Tap to activate.">
+
+  <!-- 🌐 Social Meta Tags (Telegram-safe version) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🔵 Claim Your Blue Key | Unlock TiffyAI Treasury" />
+  <meta property="og:description" content="TiffyAI detected your curiosity. Take your free Blue Key and unlock exclusive rewards on the blockchain." />
+  <meta property="og:image" content="https://tiffyai.github.io/Start/Enter.jpg" />
+  <meta property="og:url" content="https://tiffyai.github.io/Start/" />
+
+  <!-- 🐦 Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🔵 Claim Your Blue Key | TiffyAI Stamp" />
+  <meta name="twitter:description" content="You've caught the attention of TiffyAI. Here's your reward. Come explore." />
+  <meta name="twitter:image" content="https://tiffyai.github.io/Start/Enter.jpg" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('set.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 20, 0.6);
+      z-index: 0;
+    }
+
+    .portal {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #111 40%, transparent 70%);
+      box-shadow: 0 0 60px #0ff, 0 0 120px #f0f;
+      animation: pulsePortal 3s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    .portal::before, .portal::after {
+      content: '';
+      position: absolute;
+      top: -10%; left: -10%;
+      width: 120%; height: 120%;
+      border-radius: 50%;
+      border: 4px dotted #0ff;
+      animation: spin 10s linear infinite;
+      opacity: 0.4;
+    }
+
+    .portal::after {
+      border: 4px dashed #f0f;
+      animation-direction: reverse;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulsePortal {
+      0%,100% { box-shadow: 0 0 40px #0ff, 0 0 80px #f0f; }
+      50% { box-shadow: 0 0 100px #f0f, 0 0 180px #0ff; }
+    }
+
+    .portal-button {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      cursor: pointer;
+      animation: pulseBtn 2s infinite ease-in-out;
+      box-shadow: 0 0 20px #0ff, 0 0 60px #f0f;
+    }
+
+    @keyframes pulseBtn {
+      0%,100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .portal-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      top: 0; left: 0;
+    }
+
+    .ripple {
+      position: absolute;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      animation: rippleAnim 1s ease-out;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes rippleAnim {
+      0% { opacity: 0.8; transform: scale(0.2); }
+      70% { opacity: 0.2; transform: scale(2); }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal"></div>
+
+  <audio id="portalSound" src="https://tiffyai.github.io/Stamp/spring.wav" preload="auto"></audio>
+
+  <div class="portal-button" onclick="playSoundRippleAndOpen(event)">
+    <img id="startGif" src="https://tiffyai.github.io/Start/Start.gif" style="z-index: 1;" />
+    <img id="stuckOverlay" src="https://tiffyai.github.io/Start/stuck.gif" style="z-index: 2;" />
+  </div>
+
+  <script>
+    const stuckOverlay = document.getElementById("stuckOverlay");
+
+    setTimeout(() => {
+      stuckOverlay.src = "https://tiffyai.github.io/Start/stuck.jpg";
+    }, 3700);
+
+    function playSoundRippleAndOpen(evt) {
+      const sound = document.getElementById("portalSound");
+      stuckOverlay.remove();
+      sound.play().catch(() => {});
+      createRipple(evt);
+      setTimeout(() => {
+        const chromeIntent = 'intent://tiffyai.github.io/portal/#Intent;scheme=https;package=com.android.chrome;end';
+        window.location.href = chromeIntent;
+      }, 2000);
+    }
+
+    function createRipple(e) {
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const size = rect.width * 1.8;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px'; ripple.style.top = y + 'px';
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    }
+  </script>
+</body>
+</html>
